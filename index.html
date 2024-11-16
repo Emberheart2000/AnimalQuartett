@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tierquartett</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="fonts/montserrat.css">
+</head>
+
+<body>
+    <header>
+        <a><img id="logo" src="Logo Quartett.svg" class="backgroundImage"> </a>
+        <h1>Tierquartett</h1>
+        <nav>
+            <ul>
+                <li><a id="showOverlayButton" href="#">Filter: <span id="selectedFilter"></span></a></li>
+                <li>
+                    <label for="searchField" class="hidden">Search</label>
+                    <input type="text" id="searchField" placeholder="Search...">
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Overlay -->
+    <div id="overlay" class="overlay">
+        <div class="overlay-content">
+            <a href="#" id="closeOverlayButton" class="close">X</a>
+            <div class="filter-container">
+                <label class="filter" id="filterText"for="animal-group-filter">Filter nach Gruppe:</label>
+                <select class="filter" id="animal-group-filter">
+                    <option value="All">All</option>
+                    <option value="Predators">Predators</option>
+                    <option value="Poisonous and Infectious">Poisonous and Infectious</option>
+                    <option value="Reptiles">Reptiles</option>
+                    <option value="Sea Creatures">Sea Creatures</option>
+                    <option value="Marine Giants">Marine Giants</option>
+                    <option value="Large Mammals">Large Mammals</option>
+                    <option value="Land Mammals">Land Mammals</option>
+                    <option value="Birds">Birds</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div id="wrapper-container"></div>
+    </main>
+    <footer><p>&copy; 2023 Tierquartett. All rights reserved.</p>
+    </footer>
+    
+    <div class="backgroundImageBox"><img id="" src="images/paper.jpg" class="backgroundImage"></div>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+@media screen and (max-width: 1200px) {
+   
+    .cardHeader,
+    .stats,
+    .trivia,
+    .Tierbild {
+        width: 45vw;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        list-style-type: none;
+        justify-content: center;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+    #logo{
+        height: 6em;
+        width: 6em;
+        display: block;
+        margin: 20px auto;
+        position: relative;
+        left: auto;
+        align-self: center;
+    }
+    h1{
+        display: none;
+    }
+    #filterText {
+        display: none;
+    }
+
+    #wrapper-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+    .cardHeader,
+    .stats,
+    .trivia,
+    .Tierbild {
+        width: 90vw;
+    }
+
+    #wrapper-container {
+        grid-template-columns: 1fr;
+    }
+    .overlay-content{
+        gap:10px;
+        padding:10px;
+    }
+    #animal-group-filter{
+        width: 70vw;
+        font-size: 1.5em;
+    }
+}

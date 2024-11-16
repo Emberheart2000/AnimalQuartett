@@ -1,0 +1,314 @@
+body {
+    background-color: #f0f0f0;
+    font-family: Helvetica, sans-serif, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10vh;
+
+}
+#logo{
+    height: 6em;
+    width: 6em;
+    position: absolute;
+    margin-top: 20px;
+    left: 100px;
+    align-self:flex-start;
+}
+header {
+    font-family: 'Montserrat-Medium', medium;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: sticky;
+    z-index: 2;
+    top:0;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    background-color: #f7eac1;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7eac1;
+    height: 5vh;
+    font-size: 1.5em;
+    font-family: 'Montserrat-Medium', medium;
+    z-index: 2;
+    bottom:0;
+    font-size: 1em;
+}
+
+.cardHeader,
+.stats,
+.trivia,
+.Tierbild {
+    width: 25vw;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cardHeader {
+    background-color: #96714b;
+    display: flex;
+    justify-content: flex-start;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.stats {
+    background-color: #ddbd97;
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: left;
+}
+
+.trivia {
+    background-color: #96714b;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border-radius: 0 0 2em 2em;
+    box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #4e3714;
+    margin-block-start: .2em;
+    margin-block-end: .2em;
+
+}
+
+h4 {
+    display: flex;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #4e3714;
+    margin-block-start: .5em;
+    margin-block-end: .5em;
+    padding-left: .5em;
+    padding-right: .5em;
+    align-self: center;
+}
+
+div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+p {
+    display: flex;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+label{
+    text-decoration: none;
+    color: #4e3714;
+    font-size: 2rem;
+    font-family: 'Montserrat-Medium', medium;
+}
+
+.Tierbild {
+    height: 20em;
+    /* Höhe des Bildes */
+    object-fit: cover;
+    /* Bild wird zugeschnitten, um den Container zu füllen */
+    object-position: 50% 75%;
+    /* Bild wird zentriert */
+    border-radius: 2em 2em 0 0;
+    /* Abgerundete Ecken */
+}
+
+.Kategorie {
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    color: #4e3714;
+    padding-block-start: .5em;
+    padding-block-end: .5em;
+    padding-left: 1.5em;
+    padding-right: .5em;
+    justify-content: flex-start;
+
+}
+
+.group {
+    font-size: 1.7em;
+    font-weight: 800;
+    color: #4e3714;
+    background-color: #ff8c00;
+    padding-left: 1.5em;
+    min-width: 3em;
+    height: 100%
+}
+
+.triviaContent {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 0.85em;
+    font-weight: 600;
+    font-stretch: condensed;
+    color: #e8b480;
+    padding: .5em;
+}
+
+.Icon {
+    width: 30px;
+    height: 30px;
+    display: block;
+    /* Stellt sicher, dass das Icon als Block-Element behandelt wird */
+    object-fit: cover;
+    align-self: left;
+    /* transform: rotate(90deg); */
+}
+
+.sizeIcon {
+    transform: rotate(90deg);
+}
+
+.speedIcon {
+    transform: scale(1.5);
+}
+
+.iconBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid #926828;
+    flex-basis: 50%;
+    box-sizing: border-box;
+    height: 33.333333%;
+}
+
+.animalCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    height: 40em;
+}
+
+#wrapper-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    z-index: 1;
+}
+
+.backgroundImageBox {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.backgroundImage {
+    width: 100vw;
+    height: 100vh;
+    object-fit: block;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+li{
+    margin: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #4e3714;
+    font-size: 2rem;
+}
+
+nav ul li a:hover {
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Halbtransparentes Schwarz */
+    z-index: 1000; /* Über allen anderen Inhalten */
+    display: none; /* Standardmäßig ausgeblendet */
+}
+
+/* Optional: Inhalt im Overlay zentrieren */
+.overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f7eac1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display:flex;
+    gap: 1em;
+
+}
+
+.filter{
+    font-size: 2em;
+    color: #4e3714;
+    background-color: #f7eac1;
+}
+
+.cardwrapper:hover {
+    transform: scale(1.02);
+    transition: transform 0.5s;
+
+}
+
+#closeOverlayButton{
+    text-decoration: none;
+    font-size: 2em;
+    color:#4e3714;
+}
+#searchField{
+    height:2.5em;
+    width: 100%;
+    margin-left: 1em;
+}
+
+
