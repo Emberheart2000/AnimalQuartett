@@ -1,7 +1,8 @@
-colors = ['#fed1b7', '#f3dab8', '#a0c9a9', '#cbe8f9', '#f8f5f1', '#b5daf2', '#d1cef8', '#bbf4f3', '#e0f8ce', '#e8edfc', '#a0f2d6', '#e5c1f5', '#c8eaba', '#fdfaf9', '#f5ffef', '#c6f5e4', '#ecc4b4', '#fbd2da', '#e9c3dd', '#e5bdcf'];
 const newColors = ['#f8c8d8', '#f3e0c0', '#a3c9a8', '#a0d6d3', '#c0e8f9', '#e0f8ce', '#d1cef8', '#f08cb5'];
-const animalNames = ['Lion', 'Cheetah', 'Tiger', 'Hyena', 'Wandering Spider', 'Scorpion', 'Mosquito', 'Poison Dart Frog', 'Crocodile', 'Cobra', 'Komodo Dragon', 'Galapagos Tortoise', 'Swordfish', 'Snail', 'Colossal Squid', 'Walrus', 'Whale Shark', 'White Shark', 'Blue Whale', 'Orca', 'Elephant', 'Buffalo', 'Polar Bear', 'Hippopotamus', 'Gorilla', 'Grizzly', 'Giraffe', 'Wolf', 'Ostrich', 'Peregrine Falcon', 'Albatross', 'Peacock']; // Beispiel-Tiernamen
-let randomAnimalName = 'Cheetah'; // Standard-Tiername
+let gamevalue = 0;
+//const animalNames = ['Lion', 'Cheetah', 'Tiger', 'Hyena', 'Wandering Spider', 'Scorpion', 'Mosquito', 'Poison Dart Frog', 'Crocodile', 'Cobra', 'Komodo Dragon', 'Galapagos Tortoise', 'Swordfish', 'Snail', 'Colossal Squid', 'Walrus', 'Whale Shark', 'White Shark', 'Blue Whale', 'Orca', 'Elephant', 'Buffalo', 'Polar Bear', 'Hippopotamus', 'Gorilla', 'Grizzly', 'Giraffe', 'Wolf', 'Ostrich', 'Peregrine Falcon', 'Albatross', 'Peacock']; // Beispiel-Tiernamen
+//let playerCardIds = [];
+//let computerCardIds = [];
 
 document.addEventListener('DOMContentLoaded', function () {
     function init() {
@@ -10,7 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('closeOverlayButton').addEventListener('click', hideOverlay);
         document.getElementById('closeOverlayButton').addEventListener('click', refreshFilter);
         document.getElementById('searchField').addEventListener('input', search);
+        document.getElementById('startGameButton').addEventListener('click', startGame);
         refreshFilter();
+
     }
 
     function refreshFilter() {
@@ -22,12 +25,12 @@ document.addEventListener('DOMContentLoaded', function () {
         deleteCards();
     }
 
-    function search(){
+    function search() {
         const searchValue = document.getElementById('searchField').value.trim();
         deleteCards();
         if (searchValue === '') {
             initialSelectedValue = 'All';
-        } else {
+        } else if (searchValue.length > 0){
             initialSelectedValue = 'search';
         }
         dataprep(initialSelectedValue);
@@ -41,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('overlay').style.display = 'none';
     }
 
-    function dataprep(initialSelectedValue = 'All') {
+    function dataprep(initialSelectedValue) {
         fetch('data/animaldata.json')
             .then(response => {
                 if (!response.ok) {
@@ -51,17 +54,21 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(data => {
                 switch (initialSelectedValue) {
-                case 'search':
-                    animals = data.filter(animal => animal.name.toLowerCase().includes(document.getElementById('searchField').value.toLowerCase()));
-                    break;
-                case 'All':
-                    animals = data;
-                    break;
-                default:
-                    animals = data.filter(animal => animal.groupname === initialSelectedValue);
-                    break;
+                    case 'search':
+                        animals = data.filter(animal => animal.name.toLowerCase().includes(document.getElementById('searchField').value.toLowerCase()));
+                        break;
+                    case 'All':
+                        animals = data;
+                        break;
+                    case 'game':
+                        animals = data.filter(animal => animal.name.toLowerCase().includes('Lion'));
+                        console.log('Gamemode activated');
+                        break;
+                    default:
+                        animals = data.filter(animal => animal.groupname === initialSelectedValue);
+                        break;
                 }
-                // animals = data.filter(animal => animal.groupname === initialSelectedValue);
+
                 animals.forEach((animal, i) => {
                     generateCards(animal, i);
                     switch (animal.group) {
@@ -150,6 +157,69 @@ function deleteCards() {
 
 function quartett() {
     const wrapperContainer = document.getElementById('wrapper-container');
-    wrapperContainer.style.gridTemplateColumns = 'repeat(4, 1fr)';
+    wrapperContainer.style.display = 'flex';
+    wrapperContainer.style.flexWrap = 'wrap';
+    wrapperContainer.style.justifyContent = 'space-between';
+    wrapperContainer.style.alignItems = 'center';
+    wrapperContainer.style.height = '100vh';
+
+    const cards = document.querySelectorAll('.cardwrapper');
+    cards.forEach((card, index) => {
+        card.style.flex = '1 1 45%';
+        card.style.margin = '1em';
+        if (index < cards.length / 2) {
+            card.style.alignSelf = 'flex-start';
+        } else {
+            card.style.alignSelf = 'flex-end';
+        }
+    });
+}
+
+function generateUniqueRandomNumbers() {
+    const numbers = new Set();
+    while (numbers.size < 16) {
+        const randomNumber = Math.floor(Math.random() * 32) + 1;
+        numbers.add(randomNumber);
+    }
+    return Array.from(numbers);
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function generateCardArrays() {
+    const allCardIds = Array.from({ length: 32 }, (_, i) => i + 1);
+    const uniqueNumbers = generateUniqueRandomNumbers();
+    let uniqueCardIds = uniqueNumbers;
+    let remainingCardIds = allCardIds.filter(id => !uniqueCardIds.includes(id));
+
+    playerCardIds = shuffleArray(uniqueCardIds);
+    computerCardIds = shuffleArray(remainingCardIds);
+
+    console.log('Player Card IDs:', playerCardIds);
+    console.log('Computer Card IDs:', computerCardIds);
+}
+
+function startGame() {
+    gamevalue = '1';
+    switch (gamevalue) {
+        case '1':
+            console.log('Game started');
+            initialSelectedValue = 'game';
+            deleteCards();
+            generateUniqueRandomNumbers();
+            generateCardArrays();
+            document.querySelector('footer').style.display = 'none';
+
+            break;
+        default:
+            console.log('Search started');
+            break;
+    }
 
 }
